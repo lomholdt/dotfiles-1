@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# codyss-t.tunnlr.com
+function tunnlr() {
+  ssh  -nNt -g -R :12821:0.0.0.0:3001 tunnlr3599@ssh1.tunnlr.com
+}
+
+# codyssdesigner-t.tunnlr.com
+function des_tunnlr() {
+  ssh  -nNt -g -R :13218:0.0.0.0:4000 tunnlr4123@ssh1.tunnlr.com
+}
+
+# ===============================================================================================
+# PATH
+# ===============================================================================================
+
+# Gopath stuff
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOPATH/go_appengine
+
+
+#export PATH=/usr/local/bin:$PATH # Brew Path
+#export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
+
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
