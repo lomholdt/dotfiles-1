@@ -1,0 +1,20 @@
+
+lemonbar:
+  foreground: "#FFFFFF"
+  background: "#303030"
+  format: workspaces | | usage battery clock
+  geometry: 2823x50+28+15
+  fonts:
+    - font: Helvetica Neue LT Std 25 Ultra Light:size=10
+      offset: 1
+    - font: FontAwesome-9
+      offset: -4
+  bottom: false
+  docked: true
+
+clock:
+  format: "%a %b %d   %l:%M   "
+
+workspaces:
+  type: "name"
+

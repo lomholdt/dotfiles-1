@@ -1,62 +1,65 @@
-require 'date'
-require 'i3ipc'
-require 'usagewatch'
+Thread.abort_on_exception = true
 
+require_relative 'config'
 
-#"  $(Workspaces) %{r}cpu $(cpuload)%    mem $(memused)%  $(volume)  $(Battery)     $(Clock)   "
+# Require widgets/ directory
+Dir["widgets/*.rb"].each{ |file| require_relative file }
+
+trap("SIGINT") { exit 0 } # Allow ctrl-c
+
 class Lemonbar
 
+  #  echo "  $(Workspaces) %{r}cpu
+  #          $(cpuload)%    mem
+  #          $(memused)%
+  #          $(volume)
+  #          $(Battery)
+  #          $(Clock)   "
   def initialize
-    puts "   #{workspaces} #{right} #{cpuload}   #{memused}   #{battery}   #{clock}    "
+    @config = BarConfig.new
+    @bar = open(@config.bar_command, 'w+')
+    @elements = parse_elements @config.format
   end
 
-  def cpuload
-    usw = Usagewatch
-    "#{usw.uw_cpuused}% cpu"
-  end
-
-  def memused
-    usw = Usagewatch
-    "#{usw.uw_memused}% mem"
-  end
-
-  def volume
-  end
-
-  def battery
-    percent=`echo $(acpi --battery | cut -d, -f2)`
-    bat = percent.sub("%", "").to_i
-
-    icon = case
-    when bat > 90 then "\uf240"
-    when bat > 75 then "\uf241"
-    when bat > 50 then "\uf242"
-    when bat > 25 then "\uf243"
-    else "\uf244"
+  def run
+    @elements.each do |widget|
+      # Ignore formatting strings when updating widgets
+      Thread.new { widget.monitor { update! } } unless widget.is_a?(String)
     end
 
-    "#{bat}%  #{icon}"
+    Thread.new { @bar.each_line { |n| system n } }
+    sleep
+  rescue Interrupt
+    close!
   end
 
-  def clock
-   DateTime.now.strftime( "%a %b %d   %l:%M")
-  end
+private
 
-  # Directions
-  def right
-    "%{r}"
-  end
-
-  def workspaces
-    i3 = I3Ipc::Connection.new
-    workspaces = i3.workspaces
-    workspace_icons = '%{F#CCCCCC}'
-    workspaces.each do |w|
-      workspace_icons += w.focused ? "\uf111 " : "\uf1db "
+  def parse_elements(format)
+    # Replace first pipe with 'center' and the second with 'right'
+    format.sub("|", "%{c}").sub("|", "%{r}").split(" ").map do |el|
+      unless el.include?("%")
+        # Create the widget if the element is a widget
+        Object.const_get(el.to_s.capitalize).new(@config.get(el) || {})
+      else
+        el # Display formatting sring
+      end
     end
-    i3.close
-    "#{workspace_icons}%{F#FFFFFF}"
   end
+
+  def update!
+    @bar.puts @elements.map{ |w| w.to_s }.join
+  rescue KeyError
+    raise "The bar's format is malformed!"
+  end
+
+  def close!
+    puts 'Exiting gracefully...'
+    Process.kill('TERM', @bar.pid)
+    exit
+  end
+
 end
 
-Lemonbar.new
+Lemonbar.new.run
+
