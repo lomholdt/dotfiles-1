@@ -9,12 +9,6 @@ trap("SIGINT") { exit 0 } # Allow ctrl-c
 
 class Lemonbar
 
-  #  echo "  $(Workspaces) %{r}cpu
-  #          $(cpuload)%    mem
-  #          $(memused)%
-  #          $(volume)
-  #          $(Battery)
-  #          $(Clock)   "
   def initialize
     @config = BarConfig.new
     @bar = open(@config.bar_command, 'w+')
