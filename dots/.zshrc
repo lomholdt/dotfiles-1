@@ -38,9 +38,50 @@ export EDITOR=nvim
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+function work(){
+  tmux attach -t work || tmuxinator work
+}
+
+function docker-run(){
+  docker-compose run web "$@"
+}
+
+function kbd-setup(){
+  # Load keybindings
+  xmodmap ~/.Xmodmap
+
+  # Key Repeat speed
+  xset r rate 300 20
+}
+
+function gpass(){
+  lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
+}
+
 # ===============================================================================================
 # PATH
 # ===============================================================================================
 
-source ~/.commonrc
+# codyss-t.tunnlr.com
+function tunnlr() {
+  ssh  -nNt -g -R :12821:0.0.0.0:3001 tunnlr3599@ssh1.tunnlr.com
+}
+
+function dk-tunnlr() {
+  ssh  -nNt -g -R :12821:0.0.0.0:3006 tunnlr3599@ssh1.tunnlr.com
+}
+
+# codyssdesigner-t.tunnlr.com
+function des_tunnlr() {
+  ssh  -nNt -g -R :13218:0.0.0.0:4000 tunnlr4123@ssh1.tunnlr.com
+}
+
+
+# Node Version Manager
+export NVM_DIR="/home/cody/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 

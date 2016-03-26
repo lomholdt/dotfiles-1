@@ -26,7 +26,8 @@ nmcli dev wifi connect Totally\ Legitimate\ Business password p@nc@ke$!
 xrdb -merge ~/.Xresources
 
 # Set second monitor scale
-xrandr --output DP-3 --scale 2x2
+xrandr --output DP-3 --scale 1.8x1.8
+
 
 ####################################################################
 
@@ -40,7 +41,10 @@ xmodmap ~/.Xmodmap
 xset r rate 300 20
 
 # Symlink mysql
-ln -s /run/mysqld/mysqld.sock /tmp/mysql.sock
+#ln -s /run/mysqld/mysqld.sock /tmp/mysql.sock
+
+# Reroute traffic from 192.168.99.100 (docker-machine on os x) to localhost
+sudo ifconfig lo:1 inet 192.168.99.100 netmask 255.255.255.255 up
 
 # Window manager
 exec i3

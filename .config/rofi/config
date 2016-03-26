@@ -1,26 +1,3 @@
-!######################################
-! X Settings
-!######################################
-#Xft.dpi: 180.0
-#Xft.antialias: true
-#Xft.lcdfilter: lcddefault
-#Xft.hintstyle: hintslight
-#Xft.hinting: true
-#Xft.rgba: rgb
-#
-#urxvt.font:  xft:DejaVuSansMono:size=14
-
-Xft.dpi: 220
-Xft.autohint: 0
-Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintfull
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: rgb
-
-Xcursor.size: 42
-
-! Rofi config
 ! Keybindings
 rofi.key-run: SuperL-d
 rofi.key-window: SuperL-Tab
