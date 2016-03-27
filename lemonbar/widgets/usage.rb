@@ -17,13 +17,14 @@ class Usage
   end
 
   def to_s
-    "#{@cpu}% cpu    "
+    "CPU: #{@cpu}%      "
   end
 
 private
 
   def cpuload
-    Usagewatch.uw_cpuused
+    cpu = Usagewatch.uw_cpuused.round
+    cpu < 10 ? " #{cpu}" : cpu
   end
 
   def memused

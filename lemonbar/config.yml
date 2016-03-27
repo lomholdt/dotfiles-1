@@ -2,7 +2,7 @@
 lemonbar:
   foreground: "#FFFFFF"
   background: "#303030"
-  format: workspaces | | usage battery clock
+  format: workspaces | | usage volume battery clock
   geometry: 2823x50+28+15
   fonts:
     - font: Helvetica Neue LT Std 25 Ultra Light:size=10
