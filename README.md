@@ -13,3 +13,4 @@ There's a bit more than just dotfiles in this repo
 ## Table of Contents
 
 1. [Lemonbar](https://github.com/callahanrts/dotfiles/tree/master/lemonbar)
+1. [(Neo)Vim](https://github.com/callahanrts/vim-config)

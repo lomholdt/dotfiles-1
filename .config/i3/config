@@ -48,6 +48,10 @@ bindsym $mod+q kill
 # Simulate Return upon pressing Control+;
 bindsym --release Control+semicolon exec --no-startup-id xdotool key --clearmodifiers Return
 
+# Screenshot keybindings
+bindsym --release $mod+$ctrl+3 --no-startup-id scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png
+bindsym --release $mod+$ctrl+4 --no-startup-id scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus right

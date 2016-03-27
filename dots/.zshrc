@@ -31,6 +31,8 @@ source $ZSH/oh-my-zsh.sh
 alias nvim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 alias python='python2' # used for google appengine
+alias scrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
+alias scrotsel='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
 
 alias tmator='tmuxinator'
 export EDITOR=nvim
