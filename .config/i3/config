@@ -206,7 +206,7 @@ client.background       #ffffff
 exec --no-startup-id xbindkeys
 
 # Start gnome-settings-daemon (experimental)
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+exec --no-startup-id sleep 3; /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 
 # $mod+d runs rofi instead of dmenu
 exec --no-startup-id rofi
@@ -216,7 +216,7 @@ exec --no-startup-id conky -c ~/.config/.conkyrc
 
 # Element status bar
 # Call my custom `lemontart` binary that starts lemonbar
-exec --no-startup-id lemontart
+exec --no-startup-id sleep 10 && lemontart
 
 # Start compositor
 exec --no-startup-id compton --config ~/.config/compton.conf --xrender-sync --xrender-sync-fence

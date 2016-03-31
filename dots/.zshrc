@@ -33,6 +33,7 @@ alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 alias python='python2' # used for google appengine
 alias scrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
 alias scrotsel='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
+alias gnome-settings-daemon='/usr/lib/gnome-settings-daemon/gnome-settings-daemon'
 
 alias tmator='tmuxinator'
 export EDITOR=nvim
