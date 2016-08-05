@@ -42,8 +42,8 @@ bindsym $mod+q kill
 # DMENU
 #bindsym $mod+d exec dmenu_run -fn 'Helvetica Neue:pixelsize=25'
 # ROFI
-#bindsym $mod+d exec rofi -show run
-#bindsym $mod+d exec dmenu_run -i -b -p 'Arch Linux' -fn 'Ubuntu Mono:bold:pixelsize=25' -nb '#fdf6e3' -nf '#586c75' -sf '#fdf6e3' -sb '#b58900'
+bindsym $mod+d exec rofi -show run
+# bindsym $mod+d exec dmenu_run -i -b -p 'Arch Linux' -fn 'Ubuntu Mono:bold:pixelsize=25' -nb '#fdf6e3' -nf '#586c75' -sf '#fdf6e3' -sb '#b58900'
 
 # Simulate Return upon pressing Control+;
 bindsym --release Control+semicolon exec --no-startup-id xdotool key --clearmodifiers Return

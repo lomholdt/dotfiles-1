@@ -16,7 +16,7 @@ fi
 # Start network manager with cli
 # nmcli dev wifi connect <name> password <password>
 nmcli dev wifi connect Callahan\ cLAN password 7755448566
-nmcli dev wifi connect Totally\ Legitimate\ Business password p@nc@ke$!
+nmcli dev wifi connect waffle password 7758539990
 
 
 ####################################################################
