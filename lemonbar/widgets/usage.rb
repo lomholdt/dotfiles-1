@@ -19,7 +19,7 @@ class Usage
   end
 
   def to_s
-    "%{B#444444}  CPU: #{@cpu}%  #{@temp}°  %{B#303030}    "
+    "%{B#373d48}  CPU: #{@cpu}%  #{@temp}°  %{B#282c34}    "
   end
 
 private

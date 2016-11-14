@@ -15,6 +15,7 @@ class BarConfig
     cmd << "-g #{lemonbar.geometry}"
     cmd << "-B \"#{lemonbar.background}\""
     cmd << "-F \"#{lemonbar.foreground}\""
+    cmd << "-u 2"
     lemonbar.fonts.each do |fconf|
       cmd << "-f \"#{fconf.font}\""
       cmd << "-o #{fconf.offset}" unless fconf.offset.nil?

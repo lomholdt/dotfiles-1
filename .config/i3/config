@@ -42,15 +42,14 @@ bindsym $mod+q kill
 # DMENU
 #bindsym $mod+d exec dmenu_run -fn 'Helvetica Neue:pixelsize=25'
 # ROFI
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show run -fullscreen -fake-transparency -fake-background 'background'
 # bindsym $mod+d exec dmenu_run -i -b -p 'Arch Linux' -fn 'Ubuntu Mono:bold:pixelsize=25' -nb '#fdf6e3' -nf '#586c75' -sf '#fdf6e3' -sb '#b58900'
 
 # Simulate Return upon pressing Control+;
 bindsym --release Control+semicolon exec --no-startup-id xdotool key --clearmodifiers Return
 
 # Screenshot keybindings
-bindsym --release $mod+$ctrl+3 --no-startup-id scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png
-bindsym --release $mod+$ctrl+4 --no-startup-id scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png
+bindsym --release $mod+p exec "scrot -s '%s.png' -e 'mv $f /home/cody/Pictures/Screenshots'"
 
 # change focus
 bindsym $mod+j focus left
@@ -141,10 +140,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink height 5 px or 5 ppt
-        bindsym k resize grow height   5 px or 5 ppt
-        bindsym h resize shrink width  5 px or 5 ppt
-        bindsym l resize grow width    5 px or 5 ppt
+        bindsym j resize shrink height 2 px or 2 ppt
+        bindsym k resize grow height   2 px or 2 ppt
+        bindsym h resize shrink width  2 px or 2 ppt
+        bindsym l resize grow width    2 px or 2 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -174,8 +173,8 @@ bindsym XF86MonBrightnessUp exec gmux_backlight +50 # increase screen brightness
 bindsym XF86MonBrightnessDown exec gmux_backlight -50 # decrease screen brightness
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
@@ -186,15 +185,15 @@ workspace_auto_back_and_forth yes
 new_window pixel 2
 
 gaps inner 25
-gaps outer 5
+gaps outer 0
 
 # Colors
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.focused          #c678dd #c678dd #ffffff #c678dd   #c678dd
+client.focused_inactive #282c34 #282c34 #ffffff #282c34   #282c34
+client.unfocused        #282c34 #282c34 #ffffff #282c34   #282c34
+client.urgent           #900000 #900000 #ffffff #900000   #900000
+client.placeholder      #61afef #61afef #ffffff #61afef   #61afef
 
 client.background       #ffffff
 
@@ -208,11 +207,9 @@ exec --no-startup-id xbindkeys
 # Start gnome-settings-daemon (experimental)
 exec --no-startup-id sleep 3; /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 
-# $mod+d runs rofi instead of dmenu
-exec --no-startup-id rofi
-
-# Make room for bars
-exec --no-startup-id conky -c ~/.config/.conkyrc
+exec --no-startup-id rofi                        # $mod+d runs rofi instead of dmenu
+# exec --no-startup-id conky -c ~/.config/.conkyrc # Make room for bars
+exec --no-startup-id dunst                       # Start notification daemon
 
 # Element status bar
 # Call my custom `lemontart` binary that starts lemonbar

@@ -32,7 +32,7 @@ xrandr --output DP-3 --scale 1.8x1.8
 ####################################################################
 
 # Set desktop background
-feh --bg-scale ~/Pictures/background.png
+feh --bg-scale ~/Pictures/backgrounds/bg9.jpg
 
 # Load keybindings
 xmodmap ~/.Xmodmap

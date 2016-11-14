@@ -1,6 +1,3 @@
-# Use Z
-#. `brew --prefix`/etc/profile.d/z.sh
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -8,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="avit"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -17,74 +14,54 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting) #fzf
 
 source $ZSH/oh-my-zsh.sh
 
-
+# Aliases
+# -------
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias nvim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-alias python='python2' # used for google appengine
-alias scrot='scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png'
-alias scrotsel='scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png'
-alias gnome-settings-daemon='/usr/lib/gnome-settings-daemon/gnome-settings-daemon'
+alias vim='nvim'
+alias el='/Applications/Electron.app/Contents/MacOS/Electron'
+alias clock='tty-clock -cbtC4'
+alias ta='tmux attach -t'
+alias tn='tmux new-session -s'
+alias tk='tmux kill-session -t'
+alias tm='tmuxinator'
 
-alias tmator='tmuxinator'
-export EDITOR=nvim
-
-# FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-function work(){
-  tmux attach -t work || tmuxinator work
+function screenshot() {
+  scrot "%s.png" -e 'mv $f ~/Pictures/Screenshots/.' $@
 }
 
-function docker-run(){
-  docker-compose run web "$@"
-}
+# NVM Exports
+# -----------
+export NVM_DIR=~/.nvm
+export EDITOR='nvim'
 
-function kbd-setup(){
-  # Load keybindings
-  xmodmap ~/.Xmodmap
+# Source Files
+# ------------
+for f in ~/.zsh/*; do source $f; done
 
-  # Key Repeat speed
-  xset r rate 300 20
-}
+# RVM
+# ---
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-function gpass(){
-  lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
-}
+# PG
+# export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 
-# ===============================================================================================
-# PATH
-# ===============================================================================================
+# Go Path
+export GOROOT=/usr/lib/go
+export GOPATH=/home/cody/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=/home/cody/Documents/libs/go_appengine/:$PATH # AppEngine
 
-# codyss-t.tunnlr.com
-function tunnlr() {
-  ssh  -nNt -g -R :12821:0.0.0.0:3001 tunnlr3599@ssh1.tunnlr.com
-}
+# Used by ~/.config/systemd/user/ssh-agent.service to init ssh-agent
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-function dk-tunnlr() {
-  ssh  -nNt -g -R :12821:0.0.0.0:3006 tunnlr3599@ssh1.tunnlr.com
-}
-
-# codyssdesigner-t.tunnlr.com
-function des_tunnlr() {
-  ssh  -nNt -g -R :13218:0.0.0.0:4000 tunnlr4123@ssh1.tunnlr.com
-}
-
-
-# Node Version Manager
 export NVM_DIR="/home/cody/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 

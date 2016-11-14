@@ -44,7 +44,7 @@ private
   def update!
     @bar.puts @elements.map{ |w| w.to_s }.join
   rescue KeyError
-    raise "The bar's format is malformed!"
+    raise "The bars format is malformed!"
   end
 
   def close!

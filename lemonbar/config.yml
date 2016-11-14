@@ -1,16 +1,20 @@
 
 lemonbar:
   foreground: "#FFFFFF"
-  background: "#303030"
-  format: workspaces | | usage volume battery clock
-  geometry: 2823x50+28+15
+  # background: "#303030"
+  background: "#282c34"
+  format: workspaces playing | | usage volume battery clock
+  #geometry: 2823x50+28+15
+  geometry: x50+28+15
   fonts:
     - font: Helvetica Neue LT Std 25 Ultra Light:size=10
       offset: 1
     - font: FontAwesome-9
       offset: -4
+      underline: 2
   bottom: false
-  docked: true
+  #docked: true
+  docked: false
 
 clock:
   format: "%a %b %d   %l:%M   "

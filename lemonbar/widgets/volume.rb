@@ -17,7 +17,7 @@ class Volume
   end
 
   def to_s
-    "#{@icon}  #{@volume}%     "
+    "%{A:amixer -q set Master toggle:}#{@icon}  #{@volume}%%{A}     "
   end
 
 private

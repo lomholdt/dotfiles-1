@@ -4,23 +4,22 @@ rofi.key-window: SuperL-Tab
 
 ! Variables
 rofi.terminal: gnome-terminal
-rofi.lines: 6
-rofi.eh: 2
-rofi.width: 60
-rofi.padding: 125
-rofi.opacity: 95
-rofi.bw: 3
-rofi.bc: #0288D1
-rofi.bg: #303030
-rofi.font: Helvetica Neue 18
-rofi.color-enabled: true
+rofi.eh: 1
+rofi.padding: 625
+rofi.bw: 0
+rofi.bc: #000000
+rofi.bg: #00FF0000
+rofi.font: Helvetica Neue 40
 
-! Colors
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+! State:           'bg',      'fg',    'bgalt',    'hlbg',     'hlfg'
 rofi.color-enabled: true
-! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
-rofi.color-normal: #303030,  #CCCCCC,  #303030,  #303030,  #0288D1
-rofi.color-urgent: #303030,  #CCCCCC,  #303030,  #303030,  #29B6F6
-rofi.color-active: #303030,  #CCCCCC,  #303030,  #303030,  #0288D1
+rofi.color-normal: #00000000, #CCCCCC, #00000000,  #00000000,  #c678dd
+rofi.color-urgent: #00000000, #CCCCCC, #00000000,  #00000000,  #c678dd
+rofi.color-active: #00000000, #CCCCCC, #00000000,  #00000000,  #c678dd
 
 !                  'background', 'border'
-rofi.color-window: #303030,      #0288D1
+rofi.color-window: #88000000,    #00000000
