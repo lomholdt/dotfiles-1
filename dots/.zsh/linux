@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+# Stop Ctrl-D from killing my terminal
+set -o ignoreeof
+
+function kbd-setup(){
+  # Load keybindings
+  xmodmap ~/.Xmodmap
+
+  # Key Repeat speed
+  xset r rate 300 20
+}
+

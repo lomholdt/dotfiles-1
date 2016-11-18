@@ -1,0 +1,58 @@
+#!/bin/zsh
+
+# ===============================================================================================
+# Misc. functions
+# ===============================================================================================
+
+function tunnlr() {
+  if [[ $1 ]]; then PORT=$1 else PORT=3001 fi
+  echo "codyss-t.tunnlr.com"
+  ssh  -nNt -g -R :12821:192.168.99.100:$PORT tunnlr3599@ssh1.tunnlr.com
+}
+
+function des_tunnlr() {
+  if [[ $1 ]]; then PORT=$1 else PORT=3002 fi
+  echo "codyssdesigner-t.tunnlr.com"
+  ssh  -nNt -g -R :13218:0.0.0.0:$PORT tunnlr4123@ssh1.tunnlr.com
+}
+
+function lscolors(){
+  for i in {0..255} ; do
+    printf "\x1b[38;5;${i}mcolour${i}\n"
+  done
+}
+
+function work(){
+  docker-machine start;
+  tm work || ta work
+}
+
+function beatcabinet() {
+  tm beatcabinet || ta beatcabinet
+}
+
+function pi() {
+  ssh pi@192.168.1.13
+}
+
+function ssh-dokku() {
+  ssh -i ~/.ssh/dokku.pem ubuntu@codycallahan.com
+}
+
+# https://github.com/google/ios-webkit-debug-proxy
+function ios-debug {
+  ios_webkit_debug_proxy -f chrome-devtools://devtools/bundled/inspector.html
+}
+
+# Make dealkit.local available to the network
+function avahi-dev {
+  IP=$(ip addr show wlp3s0 | grep inet | ruby -e "puts gets.match(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/)")
+  avahi-publish -a -R preview.dealkit.local $IP &
+  avahi-publish -a -R a.dealkit.local $IP &
+  avahi-publish -a -R asteriskid.local $IP &
+  avahi-publish -a -R dealkit.local $IP &
+}
+
+function pdf {
+  zathura $0
+}

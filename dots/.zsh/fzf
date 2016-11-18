@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+# ===============================================================================================
+# FZF
+# ===============================================================================================
+
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == */usr/share/fzf/bin* ]]; then
+  export PATH="$PATH:/usr/share/fzf/bin"
+fi
+
+# Man path
+# --------
+if [[ ! "$MANPATH" == */usr/share/fzf/man* && -d "/usr/share/fzf/man" ]]; then
+  export MANPATH="$MANPATH:/usr/share/fzf/man"
+fi
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "/usr/share/fzf/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source "/usr/share/fzf/key-bindings.zsh"
+
+# fzf Completion
+export FZF_COMPLETION_TRIGGER='**'
+bindkey '^T' fzf-completion
+bindkey '^I' $fzf_default_completion
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
