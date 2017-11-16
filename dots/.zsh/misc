@@ -23,20 +23,12 @@ function lscolors(){
 }
 
 function work(){
-  docker-machine start;
-  tmator work || tmux attach -t work
-}
-
-function beatcabinet() {
-  tmator beatcabinet || tmux attach -t beatcabinet
+  # docker-machine start;
+  tmuxinator work || ta work
 }
 
 function rdokku(){
   ssh -i ~/.ssh/dokku.pem ubuntu@ec2-54-68-79-109.us-west-2.compute.amazonaws.com
-}
-
-function pi() {
-  ssh pi@192.168.1.13
 }
 
 function notify() {

@@ -24,13 +24,16 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias tmator='tmuxinator'
 alias vim='nvim'
 alias clock='tty-clock -cbtC4'
 alias ta='tmux attach -t'
 alias tn='tmux new-session -s'
 alias tk='tmux kill-session -t'
 alias tm='tmuxinator'
+alias dc="docker-compose"
+alias dcdev="docker-compose -f docker-compose.dev.yml"
+alias ls='exa'
+# alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
 # NVM Exports
 # -----------
@@ -42,9 +45,8 @@ export EDITOR='nvim'
 for f in ~/.zsh/*; do source $f; done
 # source $(brew --prefix nvm)/nvm.sh
 
-
 # PG
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
+export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 
 # Go Path
 export GOPATH=$HOME/go
@@ -53,11 +55,7 @@ export PATH=/Users/codycallahan/Documents/libs/go_appengine:$PATH # AppEngine
 
 # Rust Path
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# RVM
-# ---
-export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+export RUST_SRC_PATH=/Users/codycallahan/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
 
 # NVM
 # ---
@@ -66,3 +64,17 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/sbin:$PATH"
+
+# rbenv
+eval "$(rbenv init -)"
+
+# Python3 Bins
+export PATH=/Users/codycallahan/Library//Python/3.6/bin:$PATH
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/sls.zsh
+

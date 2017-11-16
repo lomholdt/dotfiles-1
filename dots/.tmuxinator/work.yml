@@ -1,7 +1,6 @@
-# ~/.tmuxinator/docker.yml
 
 name: work
-root: ~/Documents/shortstack_apps
+# root: ~/Documents/shortstack_apps
 
 # Optional tmux socket
 # socket_name: foo
@@ -23,10 +22,56 @@ root: ~/Documents/shortstack_apps
 startup_window: dealkit
 
 windows:
-  - mysql:       cd docker_mysql; dc up
-  - dealkit:     sleep 5 && cd DealKit/; dc up
-  - shortstack:  sleep 5 && cd shortstack/; dc up
-  - server:      sleep 5 && cd shortstack-server/; dc up
-  - designer:    sleep 5 && cd shortstack-designer/; dc up
-  - api:         sleep 5 && cd shortstack-api/; dc up
+  - mysql:
+      root: ~/Documents/shortstack_apps/docker_mysql
+      panes:
+        - dcdev up
 
+  - dealkit:
+      root: ~/Documents/shortstack_apps/dealkit
+      panes:
+        - docker-sync start && sleep 6 && dcdev up
+
+  - shortstack:
+      root: ~/Documents/shortstack_apps/shortstack
+      panes:
+        - docker-sync start && sleep 6 && dcdev up
+
+  - server:
+      root: ~/Documents/shortstack_apps/shortstack-server
+      panes:
+        - docker-sync start && sleep 6 && dcdev up
+
+  - designer:
+      root: ~/Documents/shortstack_apps/shortstack-designer
+      panes:
+        - docker-sync start && sleep 9 && dcdev up
+
+  - style:
+      root: ~/Documents/shortstack_apps/shortstack-style
+      panes:
+        - docker-sync start && sleep 3 && rm tmp/unicorn.pid; dcdev up
+
+  - api:
+      root: ~/Documents/shortstack_apps/shortstack-api
+      panes:
+        - docker-sync start && sleep 2 && dcdev up
+
+  - asterisk:
+      root: ~/Documents/shortstack_apps/asterisk
+      panes:
+        - docker-sync start && sleep 2 && rm tmp/unicorn.pid; dcdev up
+
+  - emails:
+      root: ~/Documents/shortstack_apps/shortstack-emails
+      panes:
+        - docker-sync start && sleep 11 && dcdev up
+
+  # - mysql:       cd docker_mysql; dc up
+  # - dealkit:     sleep 6 && cd dealkit/; dc up
+  # - shortstack:  sleep 6 && cd shortstack/; dc up
+  # - server:      sleep 9 && cd shortstack-server/; dc up
+  # - designer:    sleep 9 && cd shortstack-designer/; dc up
+  # - style:       sleep 3 && cd shortstack-style/; rm tmp/unicorn.pid; dc up
+  # - api:         sleep 3 && cd shortstack-api/; dc up
+  # - asterisk:    sleep 3 && cd asterisk/; rm tmp/unicorn.pid; dc up
