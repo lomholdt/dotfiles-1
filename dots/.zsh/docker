@@ -28,11 +28,11 @@ function dcbash(){
 
 export SS_DB_BACKUPS=/Users/codycallahan/Documents/shortstack_apps/db_backups/
 function dbbackup(){
-  dbmgr backup shortstack_development -d mysql -P 3306 -h 0.0.0.0 -p ~/Documents/shortstack_apps/db_backups
+  dbmgr mysql backup shortstack_development --host 0.0.0.0 -P 3306 -p ~/Documents/shortstack_apps/db_backups
 }
 
 function dbrestore() {
-  dbmgr restore shortstack_development -d mysql -P 3306 -h 0.0.0.0 -p ~/Documents/shortstack_apps/db_backups
+  dbmgr mysql restore shortstack_development -P 3306 --host 0.0.0.0 -p ~/Documents/shortstack_apps/db_backups
 }
 
 
